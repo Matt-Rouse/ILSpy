@@ -12,7 +12,7 @@
 				<ae:TextEditor Name="textEditor" AutomationProperties.Name="Decompilation"  FontFamily="Consolas" FontSize="10pt" IsReadOnly="True"
 				               Background="{DynamicResource {x:Static SystemColors.InfoBrushKey}}"
 				               Foreground="{DynamicResource {x:Static SystemColors.InfoTextBrushKey}}"
-							   PreviewMouseWheel="textEditor_PreviewMouseWheel">
+							   PreviewMouseWheel="TextEditor_MouseScroll">
 					<ae:TextEditor.Resources>
 						<!-- prevent App-wide button style from applying to the buttons in the search box -->
 						<Style TargetType="{x:Type Button}" />

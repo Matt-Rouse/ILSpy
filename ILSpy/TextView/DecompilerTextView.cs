@@ -907,6 +907,25 @@ namespace ICSharpCode.ILSpy.TextView
 				nodes[i].Decompile(context.Language, textOutput, context.Options);
 			}
 		}
+
+		private void TextEditor_MouseScroll(object sender, MouseWheelEventArgs e)
+		{
+			var textEditor = sender as TextEditor;
+			if (sender == null || Keyboard.Modifiers != ModifierKeys.Control)
+			{
+				return;
+			}
+
+			e.Handled = true;
+			if (e.Delta > 0 && textEditor.FontSize <= 200)
+			{
+				++textEditor.FontSize;
+			}
+			else if (textEditor.FontSize >= 3)
+			{
+				--textEditor.FontSize;
+			}
+		}
 		#endregion
 
 		#region WriteOutputLengthExceededMessage
@@ -1225,30 +1244,6 @@ namespace ICSharpCode.ILSpy.TextView
 			}
 		}
 		#endregion
-
-		private void textEditor_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
-		{
-			var textEditor = sender as TextEditor;
-			if (sender == null)
-			{
-				return;
-			}
-
-			if (Keyboard.Modifiers != ModifierKeys.Control)
-			{
-				return;
-			}
-
-			e.Handled = true;
-			if (e.Delta > 0)
-			{
-				++textEditor.FontSize;
-			}
-			else if (textEditor.FontSize >= 3)
-			{
-				--textEditor.FontSize;
-			}
-		}
 	}
 
 	[DebuggerDisplay("Nodes = {DecompiledNodes}, ViewedUri = {ViewedUri}")]
